@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="dev.zelenin.fragmenttest.InfoActivity"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="dev.zelenin.fragmenttest.info_fragments.AssignFragment"
+        android:id="@+id/fragment"
+        tools:layout="@layout/assign_fragment" />
+
+    <fragment
+        android:layout_width="197dp"
+        android:layout_height="180dp"
+        android:name="dev.zelenin.fragmenttest.info_fragments.ImageFragment"
+        android:id="@+id/fragment2"
+        tools:layout="@layout/image_fragment" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="dev.zelenin.fragmenttest.info_fragments.TextFragment"
+        android:id="@+id/fragment3"
+        tools:layout="@layout/text_fragment" />
+</LinearLayout>

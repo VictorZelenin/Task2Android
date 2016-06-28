@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FragmentTest</string>
+    <string name="listFragText">List View</string>
+    <string name="kyiv">Kyiv</string>
+    <string name="kiev_is_an_important_industrial_scientific_educational_and_cultural_centre_of_eastern_europe_it_is_home_to_many_high_tech_industries_higher_education_institutions_and_world_famous_historical_landmarks_the_city_has_an_extensive_infrastructure_and_highly_developed_system_of_public_transport_including_the_kiev_metro_the_city_apos_s_name_is_said_to_derive_from_the_name_of_kyi_one_of_its_four_legendary_founders_see_name_below_during_its_history_kiev_one_of_the_oldest_cities_in_eastern_europe_passed_through_several_stages_of_great_prominence_and_relative_obscurity_the_city_probably_existed_as_a_commercial_centre_as_early_as_the_5th_century_a_slavic_settlement_on_the_great_trade_route_between_scandinavia_and_constantinople_kiev_was_a_tributary_of_the_khazars_9_until_seized_by_the_varangians_vikings_in_the_mid_9th_century_under_varangian_rule_the_city_became_a_capital_of_the_kievan_rus_apos_the_first_east_slavic_state_completely_destroyed_during_the_mongol_invasion_in_1240_the_city_lost_most_of_its_influence_for_the_centuries_to_come_it_was_a_provincial_capital_of_marginal_importance_in_the_outskirts_of_the_territories_controlled_by_its_powerful_neighbours_first_the_grand_duchy_of_lithuania_followed_by_poland_and_russia_10">Kiev is an important industrial, scientific, educational, and cultural centre of Eastern Europe. It is home to many high-tech industries, higher education institutions and world-famous historical landmarks. The city has an extensive infrastructure and highly developed system of public transport, including the Kiev Metro. The city\'s name is said to derive from the name of Kyi, one of its four legendary founders (see Name, below). During its history, Kiev, one of the oldest cities in Eastern Europe, passed through several stages of great prominence and relative obscurity. The city probably existed as a commercial centre as early as the 5th century. A Slavic settlement on the great trade route between Scandinavia and Constantinople, Kiev was a tributary of the Khazars,[9] until seized by the Varangians (Vikings) in the mid-9th century. Under Varangian rule, the city became a capital of the Kievan Rus\', the first East Slavic state. Completely destroyed during the Mongol invasion in 1240, the city lost most of its influence for the centuries to come. It was a provincial capital of marginal importance in the outskirts of the territories controlled by its powerful neighbours; first the Grand Duchy of Lithuania, followed by Poland and Russia.[10]</string>
+    <string-array name="cities">
+        <item>Kyiv</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Oslo</item>
+        <item>Lille</item>
+        <item>Barcelona</item>
+        <item>Manchester</item>
+        <item>Rome</item>
+        <item>Berlin</item>
+        <item>Warsaw</item>
+        <item>Lviv</item>
+        <item>Poznan</item>
+    </string-array>
+
+</resources>
