@@ -58,12 +58,8 @@ public class ListFragment extends Fragment {
     private void setBundle(Bundle bundle, int pos) {
         String[] cities = getResources().getStringArray(R.array.cities);
 
-        for (int i = 0; i < cities.length; i++) {
-            if (pos == i) {
-                bundle.putString("city_name", cities[i]);
-                bundle.putString("city_description", getCityDescription(pos, cities));
-            }
-        }
+        bundle.putString("city_name", cities[pos]);
+        bundle.putString("city_description", getCityDescription(pos, cities));
     }
 
     private String getCityDescription(int pos, String[] cities) {
