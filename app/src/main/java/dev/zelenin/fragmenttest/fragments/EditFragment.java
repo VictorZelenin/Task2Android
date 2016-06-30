@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import dev.zelenin.fragmenttest.R;
+import dev.zelenin.fragmenttest.database.CRUDOperations;
+import dev.zelenin.fragmenttest.database.City;
 import dev.zelenin.fragmenttest.database.DatabaseHandler;
 import dev.zelenin.fragmenttest.fragments.panel_fragments.AddPanelFragment;
 
@@ -30,10 +32,8 @@ public class EditFragment extends Fragment {
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
 
-        DatabaseHandler databaseHandler = new DatabaseHandler(this.getActivity());
-        SQLiteDatabase database = databaseHandler.getWritableDatabase();
-
         Bundle bundle = getArguments();
+
         String cityName = bundle.getString("city_name");
         String cityDescription = bundle.getString("city_description");
 
@@ -46,11 +46,12 @@ public class EditFragment extends Fragment {
 
         // editing
         updateButton.setOnClickListener(view -> {
-            ContentValues values = new ContentValues();
-            values.put(DatabaseHandler.CITY_NAME_COLUMN, cityNameField.getText().toString());
-            values.put(DatabaseHandler.CITY_DESCRIPTION_COLUMN, cityDescriptionField.getText().toString());
-            database.update("cities", values, DatabaseHandler.CITY_NAME_COLUMN + " = ?",
-                    new String[]{cityName});
+            String newCityName = cityNameField.getText().toString();
+            String newCityDescription = cityDescriptionField.getText().toString();
+
+            CRUDOperations dbOperator = new CRUDOperations(new DatabaseHandler(getActivity()));
+
+            dbOperator.updateCity(cityName, new City(newCityName, newCityDescription));
 
             getActivity().getFragmentManager()
                     .beginTransaction()
@@ -58,10 +59,6 @@ public class EditFragment extends Fragment {
                     .replace(R.id.button_container, new AddPanelFragment())
                     .addToBackStack("tag")
                     .commit();
-
-            database.close();
-            databaseHandler.close();
         });
-
     }
 }

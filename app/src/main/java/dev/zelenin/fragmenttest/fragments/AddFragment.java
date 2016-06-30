@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dev.zelenin.fragmenttest.R;
+import dev.zelenin.fragmenttest.database.CRUDOperations;
+import dev.zelenin.fragmenttest.database.City;
 import dev.zelenin.fragmenttest.database.DatabaseHandler;
 import dev.zelenin.fragmenttest.fragments.panel_fragments.AddPanelFragment;
 
@@ -30,8 +32,9 @@ public class AddFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        DatabaseHandler databaseHandler = new DatabaseHandler(this.getActivity());
-        SQLiteDatabase database = databaseHandler.getWritableDatabase();
+        // 1
+//        DatabaseHandler databaseHandler = new DatabaseHandler(this.getActivity());
+//        SQLiteDatabase database = databaseHandler.getWritableDatabase();
 
         EditText cityNameField = (EditText) getView().findViewById(R.id.city_name_field);
         EditText cityDescriptionField = (EditText) getView().findViewById(R.id.city_description);
@@ -40,13 +43,22 @@ public class AddFragment extends Fragment {
         addToDbButton.setOnClickListener(view -> {
             if (!(cityNameField.getText().toString().equals("")
                     || cityDescriptionField.getText().toString().equals(""))) {
-                ContentValues values = new ContentValues();
 
                 Log.d("MY LOG", cityNameField.toString());
                 Log.d("MY LOG", cityDescriptionField.toString());
-                values.put(DatabaseHandler.CITY_NAME_COLUMN, cityNameField.getText().toString());
-                values.put(DatabaseHandler.CITY_DESCRIPTION_COLUMN, cityDescriptionField.getText().toString());
-                database.insert("cities", null, values);
+
+                String cityName = cityNameField.getText().toString();
+                String cityDescription = cityDescriptionField.getText().toString();
+
+                CRUDOperations dbOperator = new CRUDOperations(new DatabaseHandler(getActivity()));
+
+
+                dbOperator.insertCity(new City(cityName, cityDescription));
+
+//                ContentValues values = new ContentValues();
+//                values.put(DatabaseHandler.CITY_NAME_COLUMN, cityNameField.getText().toString());
+//                values.put(DatabaseHandler.CITY_DESCRIPTION_COLUMN, cityDescriptionField.getText().toString());
+//                database.insert("cities", null, values);
 
                 getActivity().getFragmentManager()
                         .beginTransaction()
@@ -55,8 +67,8 @@ public class AddFragment extends Fragment {
                         .addToBackStack("tag")
                         .commit();
 
-                database.close();
-                databaseHandler.close();
+//                database.close();
+//                databaseHandler.close();
 
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Empty field(s)",

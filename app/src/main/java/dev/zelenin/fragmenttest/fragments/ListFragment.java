@@ -1,7 +1,7 @@
 package dev.zelenin.fragmenttest.fragments;
 
-
 import android.app.Fragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,16 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import dev.zelenin.fragmenttest.R;
+import dev.zelenin.fragmenttest.database.CRUDOperations;
 import dev.zelenin.fragmenttest.database.DatabaseHandler;
 import dev.zelenin.fragmenttest.fragments.panel_fragments.EditPanelFragment;
 
@@ -30,6 +29,7 @@ import dev.zelenin.fragmenttest.fragments.panel_fragments.EditPanelFragment;
 public class ListFragment extends Fragment {
 
     private static final String LOG_TAG = "MY_LOGS";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,19 +43,25 @@ public class ListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        DatabaseHandler databaseHandler = new DatabaseHandler(this.getActivity());
-        SQLiteDatabase database = databaseHandler.getWritableDatabase();
+        // 3
+//        DatabaseHandler databaseHandler = new DatabaseHandler(this.getActivity());
+//        SQLiteDatabase database = databaseHandler.getWritableDatabase();
+
+        CRUDOperations dbOperator = new CRUDOperations(new DatabaseHandler(getActivity()));
+
         List<String> cities = new ArrayList<>();
         Map<String, String> cityMap = new TreeMap<>();
 
-        Cursor cursor = database.query("cities", null, null, null, null, null,
-                DatabaseHandler.CITY_NAME_COLUMN);
-
-        while (cursor.moveToNext()) {
-            cities.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_NAME_COLUMN)));
-            cityMap.put(cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_NAME_COLUMN)),
-                    cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_DESCRIPTION_COLUMN)));
-        }
+        dbOperator.getAllCities(cities, cityMap);
+//        new CRUDOperations(new DatabaseHandler(getActivity())).getAllCities(cities, cityMap);
+//        Cursor cursor = database.query("cities", null, null, null, null, null,
+//                DatabaseHandler.CITY_NAME_COLUMN);
+//
+//        while (cursor.moveToNext()) {
+//            cities.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_NAME_COLUMN)));
+//            cityMap.put(cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_NAME_COLUMN)),
+//                    cursor.getString(cursor.getColumnIndex(DatabaseHandler.CITY_DESCRIPTION_COLUMN)));
+//        }
 
 
         ListView list = (ListView) getView().findViewById(R.id.list);
@@ -85,9 +91,9 @@ public class ListFragment extends Fragment {
                     .commit();
         });
 
-        cursor.close();
-        database.close();
-        databaseHandler.close();
+//        cursor.close();
+//        database.close();
+//        databaseHandler.close();
     }
 
     private void setBundle(Bundle bundle, int pos, List<String> cities, Map<String, String> map) {

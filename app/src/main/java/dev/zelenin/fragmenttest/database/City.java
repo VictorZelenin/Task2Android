@@ -5,26 +5,15 @@ package dev.zelenin.fragmenttest.database;
  */
 public class City {
 
-    private int id;
     private String name;
     private String description;
 
     public City(){}
 
-    public City(int id, String name, String description) {
-        this.id = id;
+    public City(String name, String description) {
         this.name = name;
         this.description = description;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
